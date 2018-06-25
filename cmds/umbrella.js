@@ -1,6 +1,7 @@
 const ora = require('ora');
 const getWeather = require('../utils/weather');
 const getProfile = require('../utils/profile');
+const columnify = require('columnify');
 
 module.exports = async(args) => {
   const spinner = ora().start();
@@ -14,8 +15,16 @@ module.exports = async(args) => {
     const weather = await getWeather(profile.location);
     
     spinner.stop();
-    console.log(`Current conditions in ${profile.location} is ${weather.condition.text}, so your pet ${profile.name} ` + (weather.condition.text.toLowerCase() === 'rainy' ? 'is going to ' : 'does not ' + 'need an umbrella.'));
-  } catch (err) {
+    let data = [];
+    data.push({
+      'name': profile.name,
+      'location': profile.location,
+      'weather': weather.condition.text,
+      'umbrella?': weather.condition.text.toLowerCase() === 'rainy' ? 'Yes' : 'No'
+    });
+    let columns = columnify(data);
+    console.log(columns);    
+ } catch (err) {
     spinner.stop();
     console.error(err.message);
   }
