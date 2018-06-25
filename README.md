@@ -21,4 +21,3 @@ npm install
 ./bin/pet-weather add --name [name] --type [type] --breed [breed] --location [location]
 ./bin/pet-weather add -n [name] -t [type] -b [breed] -l [location]
 ```
-
