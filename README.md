@@ -18,6 +18,10 @@ npm install
 ./bin/pet-weather list -k breed
 ./bin/pet-weather umbreall --pet [pet_id]
 ./bin/pet-weather umbreall -p [pet_id]
-./bin/pet-weather add --name [name] --type [type] --breed [breed] --location [location]
-./bin/pet-weather add -n [name] -t [type] -b [breed] -l [location]
+./bin/pet-weather add --data [pet data] 
+./bin/pet-weather add -d [pet data]
 ```
+
+## Sample command to add a new pet
+./bin/pet-weater add --data '{"name": "My Lovely Dog", "type": 1, "breed": 1, "location": "Vancouver, BC"}'
+

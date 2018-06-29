@@ -5,23 +5,25 @@ module.exports = async(args) => {
   const spinner = ora().start();
 
   try {
-    const name = args.name || args.n;
-    if (!name) {
+    const data = args.data || args.d;
+    if (!data) {
+      throw new Error('Please provide pet info');
+    }
+    let pet = JSON.parse(data);
+
+    if (!pet.name) {
       throw new Error('Please provide name.');
     }
-    const type = args.type || args.t;
-    if (!type) {
+    if (!pet.type) {
       throw new Error('Please provide type.');
     }
-    const breed = args.breed || args.b;
-    if (!breed) {
+    if (!pet.breed) {
       throw new Error('Please provide breed.');
     }    
-    const location = args.location || args.l;
-    if (!location) {
+    if (!pet.location) {
       throw new Error('Please provide location.');
     }       
-    const result = await addPet(name, type, breed, location);
+    const result = await addPet(pet.name, pet.type, pet.breed, pet.location);
     
     spinner.stop();
     console.log(result.message);
